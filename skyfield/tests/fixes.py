@@ -23,13 +23,11 @@ def setup(utc=(2015, 10, 11, 10)):
 
     fake_now = dt.datetime(*utc)
     skyfield.api.load = skyfield.iokit.Loader('.', verbose=False)
-    skyfield.timelib.Timescale._utcnow = lambda self: fake_now
     datetime._fake_now = fake_now
     dt.datetime = datetime
 
 def teardown():
     skyfield.api.load = skyfield.iokit.Loader('.')
-    skyfield.timelib.Timescale._utcnow = dt.datetime.utcnow
     dt.datetime = _real_datetime_class
 
 class low_precision_ERA(object):

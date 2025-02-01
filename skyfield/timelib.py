@@ -89,7 +89,6 @@ class Timescale(object):
     timescale.
 
     """
-    _utcnow = datetime.utcnow
     polar_motion_table = None
 
     def __init__(self, delta_t_recent, leap_dates, leap_offsets):
@@ -127,11 +126,11 @@ class Timescale(object):
 
         For the return value to be correct, your operating system time
         and timezone settings must be set so that the Python Standard
-        Library constructor ``datetime.datetime.utcnow()`` returns a
+        Library constructor `datetime.now(timezone.utc)` returns a
         correct UTC date and time.
 
         """
-        return self.from_datetime(self._utcnow().replace(tzinfo=utc))
+        return self.from_datetime(datetime.now(utc))
 
     def from_datetime(self, datetime):
         """Return a `Time` for a Python ``datetime``.

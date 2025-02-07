@@ -291,7 +291,7 @@ class EarthSatellite(VectorFunction):
         doublets = repeat(concatenate(((t0.tt,), jdmax, (t1.tt,))), 2)
         jdo = (doublets[:-1] + doublets[1:]) / 2.0
 
-        trs, rs = _find_discrete(t0.ts, jdo, below_horizon_at, half_second, 8)
+        trs, rs = _find_discrete(t0.ts, jdo, below_horizon_at, half_second/4, 8)
 
         jd = concatenate((jdmax, trs.tt))
         v = concatenate((ones, rs * 2))

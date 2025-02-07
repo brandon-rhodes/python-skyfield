@@ -72,7 +72,7 @@ def _find_discrete(ts, jd, f, epsilon, num):
             y = y.take(indices + 1)
             # Keep only the last of several zero crossings that might
             # possibly be separated by less than epsilon.
-            mask = concatenate(((diff(ends) > 3.0 * epsilon), (True,)))
+            mask = concatenate(((diff(ends) > epsilon), (True,)))
             ends = ends[mask]
             y = y[mask]
             break
